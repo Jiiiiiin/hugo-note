@@ -32,9 +32,7 @@ categories: ["Vim"]
             * [作用范围](#作用范围)
         * [替换标志](#替换标志)
         * [查找替换 Find and repalce](#查找替换-find-and-repalce)
-    * [查看历史 show history](#查看历史-show-history)
     * [拷贝 Copy](#拷贝-copy)
-    * [折行相关](#折行相关)
     * [文本编辑 Edit txt](#文本编辑-edit-txt)
     * [补全 Complete](#补全-complete)
     * [格式化 Formate](#格式化-formate)
@@ -43,7 +41,7 @@ categories: ["Vim"]
     * [缓冲区（buffer）](#缓冲区（buffer）)
         * [缓冲区跳转](#缓冲区跳转)
     * [分屏 Split Screen](#分屏-split-screen)
-* [执行外部命令 exec external cmd](#执行外部命令-exec-external-cmd)
+    * [执行外部命令 exec external cmd](#执行外部命令-exec-external-cmd)
 * [插件](#插件)
     * [起始屏替换](#起始屏替换)
     * [自动保存编辑内容](#自动保存编辑内容)
@@ -60,6 +58,7 @@ categories: ["Vim"]
 * [配置 Config](#配置-config)
     * [键盘映射](#键盘映射)
 * [模式 mode](#模式-mode)
+    * [可视模式](#可视模式)
 * [函数](#函数)
 * [录制宏](#录制宏)
 
@@ -77,6 +76,7 @@ categories: ["Vim"]
 ### 其他
 
 Ctrl-g 显示当前编辑文件名及行数；
+
 
 
 ### 可视块 Visual Block
@@ -344,30 +344,9 @@ replace with bar (y/n/a/q/l/^E/^Y)?
 
 这是命令模式的<Ctrl+R>工具，用法还包括粘贴当前文件路径：<Ctrl+R>%。 更多用法请查看帮助：:help c_CTRL-R。
 
-### 查看历史 show history
-
-```vim
-命令行模式下：
-:history 查看所有命令行模式下输入的命令历史
-:history search或 / 或？ 查看搜索历史
-
-普通模式下：
-q/ 查看使用/输入的搜索历史
-q? 查看使用？输入的搜索历史
-q: 查看命令行历史
-
-```
-
-
 ### 拷贝 Copy
 
 + 拷贝一行：^y$。
-
-
-### 折行相关 
-
-> [vim-折叠](https://medium.com/@invisprints/vim-%E6%8A%98%E5%8F%A0-b050b7e664b8)
-
 
 
 ### 文本编辑 Edit txt
@@ -552,7 +531,7 @@ Ctrl+w -        减小窗口高度
 Ctrl+w =        统一窗口高度
 ```
 
-## 执行外部命令 exec external cmd
+### 执行外部命令 exec external cmd
 
 执行外部命令	:!<cmd> 执行外部命令 <cmd>	在正常模式下输入该命令
 
@@ -1014,6 +993,14 @@ c	|	命令行
 + 插入（insert）模式，输入文本时使用；在正常模式下键入“i”（insert）或“a”（append）即可进入插入模式（也有另外一些命令，如“c”，也可以进入插入模式，但这些命令有其它的作用）。
 + 可视（visual）模式，用于选定文本块；可以在正常模式下输入“v”（小写）来按字符选定，输入“V”（大写）来按行选定，或输入“Ctrl-V”来按方块选定。
 + 选择（select）模式，与普通的 Windows 编辑器较为接近的选择文本块的方式；在以可视模式和选择模式之一选定文本块之后，可以使用“Ctrl-G”切换到另一模式——该模式很少在 Linux 上使用，本文中就不再介绍了。
+
+### 可视模式
+
+```bash
+显示历史命令: `q:` 
+
+```
+
 
 ## 函数
 
