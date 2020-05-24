@@ -4,6 +4,7 @@ date: 2020-02-16T23:10:12+08:00
 
 tags: ["mac-os", "brew"]
 categories: ["mac-os"]
+draft: true
 ---
 
 ## 配置

@@ -11,6 +11,7 @@ draft: true
 
 * [shell](#shell)
 * [进入和推出 shell](#进入和推出-shell)
+* [远程管理](#远程管理)
 * [SSH](#ssh)
     * [-X](#-x)
     * [scp](#scp)
@@ -18,6 +19,7 @@ draft: true
     * [服务器公钥交换](#服务器公钥交换)
     * [SSDH服务管理](#ssdh服务管理)
     * [rsync 远端同步](#rsync-远端同步)
+* [VNC](#vnc)
 * [命令行 Command Line](#命令行-command-line)
     * [Shell Definition](#shell-definition)
     * [Available Shells in Linux](#available-shells-in-linux)
@@ -73,10 +75,16 @@ $tcsh
 ```
 + 查看当前的 shell 类型 `echo $SHELL`
 
-## SSH
-> [Linux远程管理 - SSH、VNC
-> [LinuxCast视频教程]](https://www.youtube.com/watch?v=YK_orcjzfdk&list=PLCJcQMZOafICYrx7zhFu_RWHRZqpB8fIW&index=33)
+## 远程管理
 
+> [[Linux远程管理 - SSH、VNCLinuxCast视频教程]](https://www.youtube.com/watch?v=YK_orcjzfdk&list=PLCJcQMZOafICYrx7zhFu_RWHRZqpB8fIW&index=33)
+
+![Text](http://qiniu.jiiiiiin.cn/b4Cvc2.png)
+
+## SSH
+
+![Text](http://qiniu.jiiiiiin.cn/rfJVkt.png)
+![Text](http://qiniu.jiiiiiin.cn/29zqns.png)
 ![Text](http://qiniu.jiiiiiin.cn/lSb4va.png)
 + jerry 第一次连接 SSHD 应用时候，应用会下发公钥到 jerry ，jerry
   将该公钥和远端主机信息一起保持在 know_hosts 文件
@@ -98,6 +106,10 @@ $tcsh
 
 ### scp
 
+security copy的意思；
+
+![Text](http://qiniu.jiiiiiin.cn/pE1UyH.png)
+
 ![Text](http://qiniu.jiiiiiin.cn/rUEMnh.png)
 + 主机跟一个冒号代表传送文件到远端主机的家目录；
 + 冒号后面跟目录表示将档案上传到远程主机对应目录，需要注意的是，你标注的登陆用户身份要具有权限访问上传的路径
@@ -105,12 +117,15 @@ $tcsh
 
     注意不跟用户名就标识使用当前主机的用户去连接远端同名用户，其实 ssh
 也是一样的用法针对这个；
++ `-r` 如果需要copy的是一个文件夹，需要加上这个参数意为递归复制
+
 
 ### sftp
 
 > [6.RHEL/CENTOS BASH shell 基礎教學](https://www.youtube.com/watch?v=8n9F7Bjv9PU&list=PLSBXWUHUonqg5CC9YhDGVDZRYkRpGerNd&index=6)
 
 ![Text](http://qiniu.jiiiiiin.cn/oxVgLv.png)
+
 
 ### 服务器公钥交换
 
@@ -166,6 +181,7 @@ PasswordAuthentication no
 
 ### rsync 远端同步
 
+通常用于做备份
 
 > https://www.youtube.com/watch?v=Uj5TfMuU6mU&list=PLSBXWUHUonqg5CC9YhDGVDZRYkRpGerNd&index=8
 
@@ -192,6 +208,17 @@ PasswordAuthentication no
 + NFS 示例 TODO
 + 示例中的 NFS 是将本地的 log 文档同步到远端的 NFS 对应目录；
 + 建议不要使用 `*`进行匹配
+
+## VNC
+
++ VNC是一种Linux系统（BSD、 Mac等）下 常用的图形化远程管理协议，使用RFB协议
++ VNC分为客户端和服务端，VNC服务运行在被管理的服务器上，其他计算机通过VNC客户端与其进行连接
++ CentOS 6 / RHEL6中使用tigervnc作为自带的VNC程序
+
+
+![Text](http://qiniu.jiiiiiin.cn/KWyrnc.png)
+![Text](http://qiniu.jiiiiiin.cn/8iIsJb.png)
+![Text](http://qiniu.jiiiiiin.cn/Nem8Up.png)
 
 
 

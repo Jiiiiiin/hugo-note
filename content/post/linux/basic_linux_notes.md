@@ -4,9 +4,10 @@ date: 2020-02-20T11:37:17+08:00
 tags: ["linux", "shell-cmd"]
 categories: ["linux"]
 
+draft: true
 ---
 
-Linux 基础知识和常用的 Linux 命令
+
 <!--more-->
 
 
@@ -37,6 +38,9 @@ Linux 基础知识和常用的 Linux 命令
     * [diff 文本比较](#diff-文本比较)
     * [tr 处理文本内容](#tr-处理文本内容)
     * [sed 检索替换](#sed-检索替换)
+* [文件备份 file archive](#文件备份-file-archive)
+    * [zip](#zip)
+    * [备份](#备份)
 * [命令相关](#命令相关)
     * [witch](#witch)
 * [目录相关](#目录相关)
@@ -476,8 +480,47 @@ $ find . -name "*.txt" | xargs grep "abc"
 
 
 
+## 文件备份 file archive
+
+> [file manager](https://www.youtube.com/watch?v=Fo9Cru5Fyu0&list=PLivQGPuwAB5q7rbsui3a7YalOw2BTZMhq&index=4)
 
 
+![](http://qiniu.jiiiiiin.cn/u6OB61.png)
+
+
+tar 适合用来做打包；
+
+zip 用来做压缩；
+### zip
+
+![](http://qiniu.jiiiiiin.cn/Jip2w5.png)
+
+
+### 备份
+
+可以使用 tar 打包加上对应 options 直接使用 zip 进行压缩；
+
+![](http://qiniu.jiiiiiin.cn/9SZdYA.png)
+必须的参数：（3个参数不能共存）
++ -c ：创建压缩文件c代表create。
++ -x ：解压缩文件
++ -t ：查看压缩包里面的文件
+
+辅助参数：
++ -z ：用 gzip 压缩/解压缩
++ -j ：用 bzip2 压缩/解压缩
++ -v ：显示压缩/解压缩的进度条
++ -f ：使用档名（注意：f后面不要接参数，也就是说-zxfv是不对的，要写成-zxvf）
+![](http://qiniu.jiiiiiin.cn/F5pJLG.png)
+
+解压还原：
+
+![](http://qiniu.jiiiiiin.cn/gmNBMQ.png)
+
++ 先把 full 还原再把每次差异备份还原
++ 需要按顺序还原
+
+关于rar和7z：https://blog.csdn.net/AC_huang/article/details/23279641
 
 ## 命令相关
 

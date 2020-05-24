@@ -4,6 +4,7 @@ date: 2020-02-20T18:41:10+08:00
 tags: ["mac", "common-software"]
 categories: ["mac"]
 
+draft: true
 ---
 
 Mac Os下我常用的软件记录 
@@ -18,6 +19,9 @@ Mac Os下我常用的软件记录
 * [自动化 Automation](#自动化-automation)
     * [Keyboard Maestro](#keyboard-maestro)
 * [OCR相关](#ocr相关)
+* [IDE](#ide)
+    * [idea](#idea)
+    * [sublime text](#sublime-text)
 
 <!-- vim-markdown-toc -->
 
@@ -72,6 +76,43 @@ Mac Os下我常用的软件记录
 > [camscanner](https://camscanner.iluoxiao.com/others/others)
 > [tesseract-ocr/tesseract](https://github.com/tesseract-ocr/tesseract)
 > [Tesseract macOS 部署](https://www.linhey.com/2018/01/01/[%E5%9B%BE%E5%83%8F%E8%AF%86%E5%88%AB]Tesseract%E9%83%A8%E7%BD%B2%E4%B8%8E%E4%BD%BF%E7%94%A8/)
+
+
+## IDE
+
+### idea
+
+
+> [Jetbrains系列产品2020.1最新激活方法[持续更新]](https://zhile.io/2018/08/17/jetbrains-license-server-crack.html)
+
+
+### sublime text
+
++ 注册码
+
+```xml
+ZYNGA INC.
+
+50 User License
+
+EA7E-811825
+
+927BA117 84C9300F 4A0CCBC4 34A56B44
+
+985E4562 59F2B63B CCCFF92F 0E646B83
+
+0FD6487D 1507AE29 9CC4F9F5 0A6F32E3
+
+0343D868 C18E2CD5 27641A71 25475648
+
+309705B3 E468DDC4 1B766A18 7952D28C
+
+E627DDBA 960A2153 69A2D98A C87C0607
+
+45DC6049 8C04EC29 D18DFA40 442C680B
+
+1342224D 44D90641 33A3B9F2 46AADB8F
+```
 
 
 

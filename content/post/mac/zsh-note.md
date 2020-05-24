@@ -44,6 +44,10 @@ brew cask install osxfuse
 
 ```
 
+#### 解压
+
++ 解压rar `brew install unrar`
+
 
 
 

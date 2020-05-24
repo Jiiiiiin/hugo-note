@@ -3,6 +3,8 @@ title: "Github Pages Node"
 date: 2020-02-15T22:18:50+08:00
 tags: ["hugo", "github-pages"]
 categories: ["github"]
+
+draft: true
 ---
 
 使用`Hugo` 构建一个静态站点，并发布到 GitHub Pages。

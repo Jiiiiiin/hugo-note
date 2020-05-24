@@ -10,6 +10,10 @@ Linux 包管理相关学习记录。
 
 <!-- vim-markdown-toc GFM -->
 
+* [文件比对及数位摘要](#文件比对及数位摘要)
+    * [cmp指令](#cmp指令)
+    * [diff指令](#diff指令)
+    * [sum/md5sum/sha256sum/sha512sum](#summd5sumsha256sumsha512sum)
 * [软件开发阶段 Software Development Stages](#软件开发阶段-software-development-stages)
 * [程序库的链接方式 Library Linking Method](#程序库的链接方式-library-linking-method)
 * [库管理 Library Management](#库管理-library-management)
@@ -30,6 +34,41 @@ Linux 包管理相关学习记录。
 <!-- vim-markdown-toc -->
 
 > [Chapter 9 Package Management](https://www.slideshare.net/kennychennetman/chap-09-pkg)
+
+> [輕鬆學習 Linux 軟體管理-數位簽章及加密法-檔案比對及數位摘要](https://www.youtube.com/watch?v=MwrAgHedUNs&list=PLb6Q-5c_2awoq2Wk2MiUCtIqGmR_zvMDz)
+
+
+## 文件比对及数位摘要
+
+### cmp指令
+cmp命令 用来比较两个文件是否有差异。当相互比较的两个文件完全一样时，则该指令不会显示任何信息。若发现有差异，预设会标示出第一个不通之处的字符和列数编号。
+```bash
+[vagrant@localhost test]$ cp test.java test1.java
+[vagrant@localhost test]$ cmp test.java test1.java
+[vagrant@localhost test]$ vi test.java
+[vagrant@localhost test]$ cmp test.java test1.java
+test.java test1.java differ: byte 988, line 22
+
+```
+
++ 当发现第一个不同的地方的时候就会停止比对，并回显不同的信息，无论文档之后还有没有其他的不同
++ cmp是一个一个字符的进行比较
+
+### diff指令
+
+TODO 添加链接地址
+> [Linux 基础知识和常用命令](id)
+
+### sum/md5sum/sha256sum/sha512sum
+
+用来比较二进制类型文件，通过演算法来比较两个文件是否不同；
+
+![Text](http://qiniu.jiiiiiin.cn/1N16Vz.png)
+![Text](http://qiniu.jiiiiiin.cn/yFUMMn.png)
+
+![Text](http://qiniu.jiiiiiin.cn/qaObHr.png)
+
+
 
 ## 软件开发阶段 Software Development Stages
 

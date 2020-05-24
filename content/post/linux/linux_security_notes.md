@@ -9,11 +9,15 @@ draft: true
 * [Firewall](#firewall)
 * [IPTables](#iptables)
     * [规则 PARAMETERS](#规则-parameters)
+        * [对sshd保护](#对sshd保护)
+        * [对ping保护](#对ping保护)
     * [基本操作](#基本操作)
     * [匹配参数](#匹配参数)
         * [FORWARD](#forward)
         * [NAT](#nat)
     * [TARGETS](#targets)
+        * [REJECT](#reject)
+        * [DROP](#drop)
 * [最佳实践](#最佳实践)
 
 <!-- vim-markdown-toc -->
@@ -36,6 +40,7 @@ draft: true
 外部流量会受到防火墙规则的管控；
 ![Text](http://qiniu.jiiiiiin.cn/OMNKJZ.png)
  防火墙就是一个安全政策控制点；
+
 
 ## IPTables
 
@@ -109,9 +114,82 @@ iptables -t filter -A INPUT -i eth0 -p tcp -dport 21 -j DROP
 
 -A[pend] 是讲新的规则加到原有规则的下方 
 
+但是:
+
+![Text](http://qiniu.jiiiiiin.cn/L3Q74d.png)
+
+导致原意需要被放开的主机还是不能访问对应服务；
+
+所以配置就需要遵守这个规则：***将允许放行的规则放在前面，拒绝的规则放在后面***
+
+我们需要先删除一条在重新设置：`iptables -D INPUT 2`
+2标示对应INPUT chain上面的行号；
+
+![Text](http://qiniu.jiiiiiin.cn/AaHv95.png)
+
+![Text](http://qiniu.jiiiiiin.cn/mpwgec.png)
+
+
+#### 对sshd保护
+
+![Text](http://qiniu.jiiiiiin.cn/obvsdk.png)
+上面用来设置拒绝规则，丢弃所有来源对 sshd 服务的访问；
+
+![Text](http://qiniu.jiiiiiin.cn/4B2OoS.png)
+之后将允许访问的 ip 设置到拒绝规则之上；
+
+#### 对ping保护
+
+![Text](http://qiniu.jiiiiiin.cn/OO25NX.png)
++ ping 发送的icmp协议
++ ping 在发送的时候会发送一个 icmp封包给远程主机
++ 如上图 icmp_swq 即远端主机返回的 icmp封包结果
+
+![Text](http://qiniu.jiiiiiin.cn/t0Sa01.png)
+
++ 丢弃ping过来的封包
++ 但是上面的配置会导致***自己也无法ping到外面***
+![Text](http://qiniu.jiiiiiin.cn/807x6e.png)
++ 针对 icmp有专门的参数设置；
++ icmp 不需要使用port去设置，而是type参数
++ 正确做法：
+
+![Text](http://qiniu.jiiiiiin.cn/O5yMK6.png)
+![Text](http://qiniu.jiiiiiin.cn/NaJ9sW.png)
+
 ### 基本操作
 
 ![Text](http://qiniu.jiiiiiin.cn/8nUVEt.png)
++ 停止防火墙：`service iptables stop`
++ 启动防火墙：`service iptables start`
++ 设置防火墙为开机启动：`chkconfig iptables on`
+![Text](http://qiniu.jiiiiiin.cn/cft2yW.png)
++ 可以在`-F`后面跟要清理的chain name；
+![Text](http://qiniu.jiiiiiin.cn/YNs7fS.png)
++ `-z` 对规则处理结果显示计数；
++ `-N` 添加新的chain：
+![Text](http://qiniu.jiiiiiin.cn/XdoREo.png)
++ 我们想要将FTP/SSHD的规则放到这两个自定义chain中；
++ 但是默认只是这样设置的话，封包还是会走向到 INPUT
+  chain，而不会丢到我们期望的chain，需要进行如下的设置：
+    我们需要到预设的chain上面加上链接，意思就是设置一条规则，让INPUT
+    chain知道所有封包是 tcp/22/eth0的请求都导向到我们自定义的chain；
+![Text](http://qiniu.jiiiiiin.cn/iKnKbE.png)
+
+![Text](http://qiniu.jiiiiiin.cn/XzJkJF.png)
++ 默认的chain在右边都会显示一个`policy`即在所有对应chain的规则都走完一遍还没有匹配的时候，就使用这个政策，默认为允许通过；
++ 但是我们自定义的chain初始是没有这个`policy`的
++ `-P`参数设置策略：
+![Text](http://qiniu.jiiiiiin.cn/Cu3PtD.png)
+    需要注意的是这个设置只能指定预设的`target`
++ 设置一条允许规则，`-s` 指定来源位置：
+![Text](http://qiniu.jiiiiiin.cn/JbXKlA.png)
+    上面就给自定义chain指定了一条规则；
++ `-v` 显示详细信息
+![Text](http://qiniu.jiiiiiin.cn/IlUeLu.png)
++ `-R` replace 替代跟上chain name 第几行，重新定义规则：
+![Text](http://qiniu.jiiiiiin.cn/SlVBRp.png)
+
 
 ### 匹配参数
 
@@ -170,7 +248,7 @@ INAT （Network Address Translation）网络地址转换是用来对数据包的
  ## 配置文件
 
 + 通过iptables添加的规则并不会永久保存，如果需要永久保存规则，则需要将规则保存在/etc/sysconfig/iptables配置文件中
-+ 可以通过以下命令将iptables规则写入配置文件：srvice iptables save
++ 可以通过以下命令将iptables规则“永久”写入配置文件：srvice iptables save
 + CentOS/RHEL 系统会带有默认iptables规则，默认保存在/etc/sysconfig/iptables中，保存自定义规则会覆盖这些默认规则
 
 ### TARGETS
@@ -186,6 +264,14 @@ RETURN：TODO
 
 用来决定对满足规则的封包做什么事情；
 
+#### REJECT
+
++ 使用REJECT，客户端连接被拒绝的效果：
+![Text](http://qiniu.jiiiiiin.cn/TaAgm7.png)
+
+#### DROP
+
++ 使用DROP对方就根本得不到相应，也就不知道其希望连接的服务到底是否被开启
 
 
  

@@ -16,6 +16,9 @@ Shell Script 基础相关记录
     * [是否是 Login Shell 类型之分](#是否是-login-shell-类型之分)
     * [是否是互动 Shell 之分](#是否是互动-shell-之分)
 * [Shell Invocation](#shell-invocation)
+* [Shell中可以执行的命令类型](#shell中可以执行的命令类型)
+* [Shell 如何找到待执行的命令](#shell-如何找到待执行的命令)
+* [指令查询方法](#指令查询方法)
 * [变量设置 Variable Setting](#变量设置-variable-setting)
     * [全局变量](#全局变量)
     * [局部变量](#局部变量)
@@ -136,6 +139,25 @@ etc 下面的这个配置必跑，下面的3个文件按照查找的优先级由
 + 互动式的 shell
 
 会在执行后面两个预设文档；
+
+
+## Shell中可以执行的命令类型
+![Text](http://qiniu.jiiiiiin.cn/pSk3kv.png)
+
++ 可以使用 `compgen -[abcA] [function]`查询不同的可以执行的“命令”类型
+![Text](http://qiniu.jiiiiiin.cn/AYGjiZ.png)
+> [Basic of Linux shell Command](https://www.youtube.com/watch?v=iMjkC8fO3VU&list=PLSebY0Ugo-zdU_gqnSPj5rjrGUhIKh3aP)
+
+## Shell 如何找到待执行的命令
+
+![Text](http://qiniu.jiiiiiin.cn/SKxmqD.png)
++ 在PATH定义的目录中找到第一个可执行程序就会被使用
++ `which cd`
+
+## 指令查询方法
+
+![Text](http://qiniu.jiiiiiin.cn/t7Wler.png)
+
 
 ## 变量设置 Variable Setting
 

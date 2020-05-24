@@ -1,9 +1,10 @@
 ---
-title: "Vim Is Common Use Cmd Notes"
+title: "Vim 基础学习"
 date: 2020-02-16T11:29:13+08:00
 
 tags: ["Vim"]
 categories: ["Vim"]
+draft: true
 ---
 
 记录自己使用 `vim` 的一些总结。
@@ -65,18 +66,18 @@ categories: ["Vim"]
 
 <!-- vim-markdown-toc -->
 
-## Tips
+> [简明 VIM 练级攻略](https://coolshell.cn/articles/5426.html)
 
 > [vim入门指南](http://wklken.me/posts/2013/08/04/translation-vim-introduction-and-tutorial.html)
 
 > [那些鲜为人知的 Vim 小技巧](https://harttle.land/2015/12/03/little-known-vim-skills.html)
 
 > [实用技巧](https://www.ibm.com/developerworks/cn/linux/l-tip-vim1/index.html)
-
+## Tips
 
 ### 其他
 
-Ctrl-g 显示当前编辑文件名及行数；
+    Ctrl-g 显示当前编辑文件名及行数；
 
 
 ### 可视块 Visual Block
