@@ -14,7 +14,7 @@ cd public
 
 # Add changes to git.
 
-git init
+# git init
 git add -A
 
 # Commit changes.
